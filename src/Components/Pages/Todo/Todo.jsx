@@ -7,15 +7,22 @@ const Todo = () => {
     const [inputData, setInputData] = useState("");
     const [items, setItems] = useState([]);
 
+
+
     const HandleAddItem = () => {
 
         if (!inputData) {
 
         } else {
-            setItems([...items, inputData])
-            console.log(items);
-        }
+            setItems([...items, inputData]);
 
+            const list = [];
+            const TodoItems = JSON.parse(localStorage.getItem("TodoItems"));
+            if (!TodoItems) {
+                list.push(inputData)
+                localStorage.setItem("TodoItems", JSON.stringify(list))
+            }
+        }
         setInputData("");
     }
 
